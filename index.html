@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joshua Odukaiye Studios | Photographer in Lagos, Nigeria</title>
+  <meta name="description" content="Joshua Odukaiye Studios is a photography studio in Lagos, Nigeria: studio portraits, fashion and editorial, weddings and events, worship gatherings and live recording sessions. Available across Nigeria and abroad." />
+  <meta property="og:title" content="Joshua Odukaiye Studios" />
+  <meta property="og:description" content="Studio portraits, fashion and editorial, weddings and events, worship gatherings and live recording sessions in Lagos, Nigeria." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#141416" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bar" id="bar">
+    <div class="wrap bar-in">
+      <a class="brand" href="#top" aria-label="Joshua Odukaiye Studios, back to top">
+        <img class="brand-logo" id="brandLogo" alt="" hidden />
+        <span class="brand-name">Joshua Odukaiye Studios</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#portraits">Work</a>
+        <a href="#about">About</a>
+        <a href="#galleries">Client galleries</a>
+        <a class="nav-book" href="#contact">Book a shoot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="where">Photography studio in Lagos, Nigeria</p>
+          <h1 class="wordmark"><span>Joshua</span><span>Odukaiye</span><span>Studios</span></h1>
+          <p class="lede">Studio portraits, fashion and editorial, weddings and events, worship gatherings and live recording sessions. Based in Lagos and available to travel across Nigeria and abroad.</p>
+          <div class="cta">
+            <a class="btn btn-gold" href="#contact">Book a shoot</a>
+            <a class="btn btn-quiet" href="#portraits">See the work</a>
+          </div>
+        </div>
+        <figure class="hero-photo">
+          <img src="img/portrait-pinstripe-suit.jpg" width="1333" height="2000" alt="Man in a navy pinstripe double-breasted suit against a dark studio backdrop" fetchpriority="high" />
+        </figure>
+      </div>
+    </section>
+
+    <div id="chapters" class="chapters" aria-live="polite">
+      <noscript><div class="wrap"><p class="muted">Turn on JavaScript to see the photographs.</p></div></noscript>
+    </div>
+
+    <section class="about" id="about" aria-labelledby="about-h">
+      <div class="wrap about-grid">
+        <h2 id="about-h" class="section-title">Studio portraits and live moments, photographed with the same care.</h2>
+        <div class="about-body">
+          <p>Joshua Odukaiye Studios is a photography studio in Lagos, Nigeria. The work moves between two rooms: the controlled light of the portrait studio, and the unrepeatable moments of worship gatherings and live recording sessions.</p>
+          <p>In the studio, each portrait is lit to suit the person in front of the lens, whether it is a headshot, a graduation session or a fashion and editorial concept. At weddings, worship gatherings and recording sessions, the aim is to record the room as it felt, with quiet attention to faces, instruments and atmosphere.</p>
+          <p>Based in Lagos and available to travel across Nigeria and internationally. Finished photographs are delivered in a private online gallery.</p>
+          <ul class="services" aria-label="Services">
+            <li>Studio portraits and headshots</li>
+            <li>Graduation sessions</li>
+            <li>Fashion and editorial</li>
+            <li>Weddings and events</li>
+            <li>Worship gatherings</li>
+            <li>Live recording sessions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="galleries" id="galleries" aria-labelledby="gal-h">
+      <div class="wrap gal-grid">
+        <div>
+          <h2 id="gal-h" class="section-title">Client galleries</h2>
+          <p class="muted gal-copy">Enter the access code you were given to open your private gallery and choose your photographs.</p>
+        </div>
+        <form class="gal-form" id="galForm" autocomplete="off" novalidate>
+          <label for="galCode">Access code</label>
+          <div class="gal-row">
+            <input id="galCode" name="code" type="text" inputmode="text" autocapitalize="none" spellcheck="false" placeholder="xxxx-xxxx" />
+            <button class="btn btn-gold" type="submit" id="galBtn">Open gallery</button>
+          </div>
+          <p class="gal-status" id="galStatus" role="status"></p>
+          <a class="gal-open" id="galOpen" href="#" target="_blank" rel="noopener" hidden>Open your gallery</a>
+        </form>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap contact-grid">
+        <div class="contact-intro">
+          <h2 id="contact-h" class="section-title">Book a shoot</h2>
+          <p class="muted">Tell us what you have in mind. The message opens in WhatsApp, ready to send, and we reply there.</p>
+          <dl class="reach">
+            <div><dt>WhatsApp</dt><dd><a id="waDirect" href="#" target="_blank" rel="noopener"><span id="phoneText"></span></a></dd></div>
+            <div><dt>Email</dt><dd><a id="mailLink" href="#"><span id="mailText"></span></a> <button class="copy" type="button" id="copyMail">Copy</button></dd></div>
+            <div id="igRow" hidden><dt>Instagram</dt><dd><a id="igLink" href="#" target="_blank" rel="noopener"></a></dd></div>
+            <div><dt>Based in</dt><dd id="cityText"></dd></div>
+          </dl>
+        </div>
+
+        <form class="book" id="bookForm" novalidate>
+          <div class="field">
+            <label for="fName">Your name</label>
+            <input id="fName" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="fType">What do you need?</label>
+            <select id="fType" name="type">
+              <option>Studio portrait or headshot</option>
+              <option>Graduation session</option>
+              <option>Fashion or editorial shoot</option>
+              <option>Wedding or event coverage</option>
+              <option>Worship gathering coverage</option>
+              <option>Live recording session</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field two">
+            <div>
+              <label for="fDate">Preferred date</label>
+              <input id="fDate" name="date" type="date" />
+            </div>
+            <div>
+              <label for="fPlace">Location</label>
+              <input id="fPlace" name="place" type="text" placeholder="Studio, venue or city" />
+            </div>
+          </div>
+          <div class="field">
+            <label for="fMsg">Details</label>
+            <textarea id="fMsg" name="msg" rows="4" placeholder="Number of people, the look you want, the occasion"></textarea>
+          </div>
+          <p class="form-error" id="formError" role="alert"></p>
+          <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
+          <a id="waSend" href="#" target="_blank" rel="noopener" hidden>Open WhatsApp</a>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <p>&copy; <span id="year">2026</span> Joshua Odukaiye Studios. All photographs are the work of the studio.</p>
+      <p><a href="#top">Back to top</a></p>
+    </div>
+  </footer>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photograph viewer" hidden>
+    <div class="lb-top">
+      <p class="lb-count" id="lbCount"></p>
+      <button class="lb-btn" type="button" id="lbClose" aria-label="Close viewer">Close</button>
+    </div>
+    <div class="lb-stage">
+      <button class="lb-nav lb-prev" type="button" id="lbPrev" aria-label="Previous photograph">&#8592;</button>
+      <img id="lbImg" alt="" />
+      <button class="lb-nav lb-next" type="button" id="lbNext" aria-label="Next photograph">&#8594;</button>
+    </div>
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="portfolio.js"></script>
+  <script src="galleries.js"></script>
+  <script src="lib/gallerycrypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

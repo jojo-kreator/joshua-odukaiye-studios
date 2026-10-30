@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Client gallery maker | Joshua Odukaiye Studios</title>
+  <style>
+    :root { --bg: #141416; --raise: #1c1c1f; --text: #ece6dc; --muted: #a8a296; --gold: #e3a13b; --line: rgba(236,230,220,.18); }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 1.0625rem/1.6 "Segoe UI", system-ui, -apple-system, sans-serif; padding: 28px 20px 64px; }
+    main { max-width: 680px; margin: 0 auto; }
+    h1 { font: 600 1.7rem/1.15 Georgia, "Times New Roman", serif; margin: 0 0 8px; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ol { margin: 0 0 22px; padding-left: 1.2em; color: var(--muted); }
+    li + li { margin-top: 4px; }
+    label { display: block; margin: 22px 0 6px; font-size: .9rem; color: var(--muted); }
+    input, textarea { width: 100%; font: inherit; color: var(--text); background: var(--raise); border: 1px solid var(--line); border-radius: 2px; padding: 12px; }
+    textarea { font: .85rem/1.45 ui-monospace, Consolas, monospace; min-height: 120px; resize: vertical; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    button { font: 600 1rem "Segoe UI", system-ui, sans-serif; cursor: pointer; padding: 14px 22px; border-radius: 2px; border: 1px solid transparent; }
+    .go { background: var(--gold); color: #1c1306; margin-top: 18px; }
+    .go:disabled { opacity: .6; cursor: wait; }
+    .ghost { background: none; color: var(--text); border-color: var(--line); padding: 9px 14px; font-size: .9rem; }
+    .ghost:hover { border-color: var(--text); }
+    .err { color: #ff9b7a; min-height: 1.5em; margin: 12px 0 0; }
+    .out { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 8px; }
+    .code { font: 700 2.2rem/1.2 ui-monospace, Consolas, monospace; letter-spacing: .06em; color: var(--gold); margin: 6px 0 10px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .ok { color: #8fd19e; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Client gallery maker</h1>
+  <p>This page runs on your own computer. Nothing you type here is sent anywhere.</p>
+  <ol>
+    <li>In Google Drive, share the client's folder as <strong>Anyone with the link can view</strong>, then copy its link.</li>
+    <li>Paste the link below and click <strong>Create entry</strong>.</li>
+    <li>Send the client the access code. Copy the line into <code>galleries.js</code> (between the square brackets) and upload that file to GitHub.</li>
+  </ol>
+
+  <form id="f" novalidate>
+    <label for="link">Google Drive folder link</label>
+    <input id="link" type="url" placeholder="https://drive.google.com/drive/folders/..." spellcheck="false" autocomplete="off" />
+    <button class="go" id="go" type="submit">Create entry</button>
+    <p class="err" id="err" role="alert"></p>
+  </form>
+
+  <section class="out" id="out" hidden aria-live="polite">
+    <label>Access code (send this to the client)</label>
+    <p class="code" id="code"></p>
+    <div class="row"><button class="ghost" type="button" id="copyCode">Copy code</button></div>
+
+    <label for="line">Line for galleries.js</label>
+    <textarea id="line" readonly></textarea>
+    <div class="row" style="margin-top:10px"><button class="ghost" type="button" id="copyLine">Copy line</button></div>
+    <p class="ok" id="check" style="margin-top:14px"></p>
+    <p>Keep a private note of which code belongs to which client. The line itself does not say, and it cannot be turned back into the link without the code.</p>
+  </section>
+</main>
+
+<script src="../lib/gallerycrypto.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var G = window.GalleryCrypto;
+
+  function copy(text, btn) {
+    var label = btn.textContent;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1500); };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    function fallback() {
+      var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(t);
+    }
+  }
+
+  $('f').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var url = $('link').value.trim();
+    $('err').textContent = ''; $('out').hidden = true;
+    if (!window.crypto || !window.crypto.subtle) {
+      $('err').textContent = 'This browser cannot create the lock. Open this page in a current version of Chrome, Edge, Firefox or Safari.';
+      return;
+    }
+    if (!/^https:\/\/\S+$/i.test(url)) { $('err').textContent = 'Paste the full link, starting with https://'; return; }
+    var code = G.generateCode(), entry;
+    $('go').disabled = true; $('go').textContent = 'Working…';
+    G.create(code, url).then(function (en) {
+      entry = en;
+      return G.unlock(code, en); // prove the lock opens before handing it over
+    }).then(function (back) {
+      $('go').disabled = false; $('go').textContent = 'Create entry';
+      if (back !== url) { $('err').textContent = 'Something went wrong while locking the link. Please try again.'; return; }
+      var line = '  { v: 1, s: "' + entry.s + '", i: "' + entry.i + '", d: "' + entry.d + '" },';
+      $('code').textContent = code;
+      $('line').value = line;
+      $('check').textContent = 'Checked: this code opens that link.';
+      $('out').hidden = false;
+      $('copyCode').onclick = function () { copy(code, this); };
+      $('copyLine').onclick = function () { copy(line, this); };
+    }).catch(function () {
+      $('go').disabled = false; $('go').textContent = 'Create entry';
+      $('err').textContent = 'Something went wrong while locking the link. Please try again.';
+    });
+  });
+})();
+</script>
+</body>
+</html>
