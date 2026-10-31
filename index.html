@@ -20,7 +20,7 @@
     <div class="wrap bar-in">
       <a class="brand" href="#top" aria-label="Joshua Odukaiye Studios, back to top">
         <img class="brand-logo" id="brandLogo" alt="" hidden />
-        <span class="brand-name">Joshua Odukaiye Studios</span>
+        <span class="brand-name" id="brandName">Joshua Odukaiye Studios</span>
       </a>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
       <nav class="nav" id="nav" aria-label="Main">
@@ -36,32 +36,34 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="where">Photography studio in Lagos, Nigeria</p>
-          <h1 class="wordmark"><span>Joshua</span><span>Odukaiye</span><span>Studios</span></h1>
-          <p class="lede">Studio portraits, fashion and editorial, weddings and events, worship gatherings and live recording sessions. Based in Lagos and available to travel across Nigeria and abroad.</p>
+          <p class="where" id="heroWhere">Photography studio in Lagos, Nigeria</p>
+          <h1 class="wordmark" id="heroName"><span>Joshua</span><span>Odukaiye</span><span>Studios</span></h1>
+          <p class="lede" id="heroLede">Studio portraits, fashion and editorial, weddings and events, worship gatherings and live recording sessions. Based in Lagos and available to travel across Nigeria and abroad.</p>
           <div class="cta">
             <a class="btn btn-gold" href="#contact">Book a shoot</a>
             <a class="btn btn-quiet" href="#portraits">See the work</a>
           </div>
         </div>
         <figure class="hero-photo">
-          <img src="img/portrait-pinstripe-suit.jpg" width="1333" height="2000" alt="Man in a navy pinstripe double-breasted suit against a dark studio backdrop" fetchpriority="high" />
+          <img id="heroImg" src="img/portrait-pinstripe-suit.jpg" width="1333" height="2000" alt="Man in a navy pinstripe double-breasted suit against a dark studio backdrop" fetchpriority="high" />
         </figure>
       </div>
     </section>
 
     <div id="chapters" class="chapters" aria-live="polite">
+      <p class="wrap muted chapters-wait" id="chaptersWait" hidden>Loading photographs…</p>
       <noscript><div class="wrap"><p class="muted">Turn on JavaScript to see the photographs.</p></div></noscript>
     </div>
 
     <section class="about" id="about" aria-labelledby="about-h">
       <div class="wrap about-grid">
         <h2 id="about-h" class="section-title">Studio portraits and live moments, photographed with the same care.</h2>
-        <div class="about-body">
+        <div class="about-body" id="aboutBody"><div id="bioText">
           <p>Joshua Odukaiye Studios is a photography studio in Lagos, Nigeria. The work moves between two rooms: the controlled light of the portrait studio, and the unrepeatable moments of worship gatherings and live recording sessions.</p>
           <p>In the studio, each portrait is lit to suit the person in front of the lens, whether it is a headshot, a graduation session or a fashion and editorial concept. At weddings, worship gatherings and recording sessions, the aim is to record the room as it felt, with quiet attention to faces, instruments and atmosphere.</p>
           <p>Based in Lagos and available to travel across Nigeria and internationally. Finished photographs are delivered in a private online gallery.</p>
-          <ul class="services" aria-label="Services">
+          </div>
+          <ul class="services" id="servicesList" aria-label="Services">
             <li>Studio portraits and headshots</li>
             <li>Graduation sessions</li>
             <li>Fashion and editorial</li>
@@ -110,6 +112,10 @@
             <input id="fName" name="name" type="text" autocomplete="name" required />
           </div>
           <div class="field">
+            <label for="fContact">Phone or email <span class="opt">(optional)</span></label>
+            <input id="fContact" name="contact" type="text" autocomplete="off" />
+          </div>
+          <div class="field">
             <label for="fType">What do you need?</label>
             <select id="fType" name="type">
               <option>Studio portrait or headshot</option>
@@ -135,6 +141,7 @@
             <label for="fMsg">Details</label>
             <textarea id="fMsg" name="msg" rows="4" placeholder="Number of people, the look you want, the occasion"></textarea>
           </div>
+          <div class="hp" aria-hidden="true"><label for="fWebsite">Leave this empty</label><input id="fWebsite" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
           <p class="form-error" id="formError" role="alert"></p>
           <button class="btn btn-gold" type="submit">Send on WhatsApp</button>
           <a id="waSend" href="#" target="_blank" rel="noopener" hidden>Open WhatsApp</a>
@@ -145,7 +152,7 @@
 
   <footer class="foot">
     <div class="wrap foot-in">
-      <p>&copy; <span id="year">2026</span> Joshua Odukaiye Studios. All photographs are the work of the studio.</p>
+      <p>&copy; <span id="year">2026</span> <span id="footName">Joshua Odukaiye Studios</span>. All photographs are the work of the studio.</p>
       <p><a href="#top">Back to top</a></p>
     </div>
   </footer>
@@ -167,6 +174,8 @@
   <script src="portfolio.js"></script>
   <script src="galleries.js"></script>
   <script src="lib/gallerycrypto.js"></script>
+  <script src="lib/layout.js"></script>
+  <script src="lib/supa.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

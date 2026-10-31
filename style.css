@@ -211,3 +211,10 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: non
   .hero-photo img { animation: none; }
   .shot, .bar, .btn { transition: none; }
 }
+
+/* ---------- added with the dashboard ---------- */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.opt { color: var(--muted); font-weight: 400; }
+.chapters-wait { padding-block: 60px; }
+.row.is-part { margin-right: auto; }
+@media (max-width: 720px) { .row.is-part { width: auto !important; } }

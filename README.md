@@ -1,5 +1,7 @@
 # Joshua Odukaiye Studios: website
 
+> **Easiest way to run the site:** set up the private dashboard once by following `SETUP-DASHBOARD.md`. After that you create client codes, upload photos, edit your bio and read booking enquiries from `admin.html`, without touching any file. Everything below describes the older, file-based way, which still works if you leave the dashboard switched off.
+
 A fast, dark portfolio site for the studio. It has no build step and no server: it is plain files that any free host can serve.
 
 ## What is in the folder
@@ -9,7 +11,9 @@ A fast, dark portfolio site for the studio. It has no build step and no server: 
 | `index.html` | The page itself, including the bio text | Sometimes (bio, headings) |
 | `config.js` | Your WhatsApp number, email, Instagram, logo | Yes |
 | `portfolio.js` | The list of photographs and how they are arranged | Yes, when you add photos |
-| `galleries.js` | Private client gallery entries | Yes, when you add a client |
+| `admin.html` | Your private dashboard (log in to use it). See `SETUP-DASHBOARD.md` | Open it in your browser |
+| `supabase/schema.sql` | One-time database setup for the dashboard | Paste it once into Supabase |
+| `galleries.js` | Private client gallery entries (older method, used only without the dashboard) | No |
 | `img/` | The photographs (two sizes of each) | Yes |
 | `tools/gallery-maker.html` | Locks a client's Google Drive link with an access code | Open it in your browser |
 | `style.css`, `app.js`, `lib/` | Design and behaviour | Rarely |
